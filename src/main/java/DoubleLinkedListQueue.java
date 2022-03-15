@@ -22,4 +22,10 @@ public class DoubleLinkedListQueue implements DoubleEndedQueue<T> {
         node.next = this.list;
         this.list = node;
     }
+
+    public void deleteFirst() {
+        DequeNode<T> temp = this.list;
+        this.list = this.list.next;
+        temp = null;
+    }
 }
