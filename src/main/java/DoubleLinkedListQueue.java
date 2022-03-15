@@ -1,4 +1,4 @@
-public class DoubleLinkedListQueue implements DoubleEndedQueue<T> {
+public class DoubleLinkedListQueue implements DoubleEndedQueue {
 
     private DequeNode list;
 
@@ -6,19 +6,19 @@ public class DoubleLinkedListQueue implements DoubleEndedQueue<T> {
         this.list = null;
     }
 
-    public void append(DequeNode<T> node) {
+    public void append(DequeNode node) {
         if(list == null) {
             list = node;
         } else {
-            DequeNode<T> temp = this.list;
-            while(temp.next != null) {
-                temp = temp.next;
+            DequeNode temp = this.list;
+            while(temp.getNext() != null) {
+                temp = temp.getNext();
             }
             temp.next = node;
         }
     }
 
-    public void appendLeft(DequeNode<T> node) {
+    public void appendLeft(DequeNode node) {
         node.next = this.list;
         this.list = node;
     }
@@ -28,7 +28,7 @@ public class DoubleLinkedListQueue implements DoubleEndedQueue<T> {
             throw new RuntimeException("Can't delete from empty list");
         }
 
-        DequeNode<T> temp = this.list;
+        DequeNode temp = this.list;
         this.list = this.list.next;
         this.list.previous = null;
         temp = null;
@@ -43,9 +43,9 @@ public class DoubleLinkedListQueue implements DoubleEndedQueue<T> {
             this.list = null;
         }
 
-        DequeNode<T> temp = this.list;
-        while(temp.next.next != null) {
-            temp = temp.next;
+        DequeNode temp = this.list;
+        while(temp.getNext().getNext() != null) {
+            temp = temp.getNext();
         }
         temp = null;
     }
@@ -58,18 +58,18 @@ public class DoubleLinkedListQueue implements DoubleEndedQueue<T> {
         if(list == null) {
             return null;
         }
-        DequeNode<T> temp = this.list;
-        while(temp.next != null) {
-            temp = temp.next;
+        DequeNode temp = this.list;
+        while(temp.getNext() != null) {
+            temp = temp.getNext();
         }
         return temp;
     }
 
     public int size() {
         int i = 0;
-        DequeNode<T> temp = this.list;
+        DequeNode temp = this.list;
         while(temp != null) {
-            temp = temp.next;
+            temp = temp.getNext();
             ++i;
         }
         return i;
