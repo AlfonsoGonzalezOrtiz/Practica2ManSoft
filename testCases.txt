@@ -1,0 +1,42 @@
+-------------------------------Casos para DequeNode-----------------------------------
+
+
+-Cuando el item == null, lanza RuntimeException
+
+-Cuando next != null y previous == null, probar si isNotATerminalNode == false
+
+-Cuando next != null y previous == null, probar si isFirstNode == true
+
+-Cuando next != null y previous == null, probar si isLastNode == false
+
+-Cuando next == null y previous != null, probar si isNotATerminalNode == false
+
+-Cuando next == null y previous != null, probar si isFirstNode == false
+
+-Cuando next == null y previous != null, probar si isLastNode == true
+
+-Cuando next == null y previous == null, probar si isNotATerminalNode == false
+
+-Cuando next == null y previous == null, probar si isFirstNode == false
+
+-Cuando next == null y previous == null, probar si isLastNode == false
+
+-Cuando next != null y previous != null, probar si isNotATerminalNode == true
+
+-Cuando next != null y previous != null, probar si isFirstNode == false
+
+-Cuando next != null y previous != null, probar si isLastNode == false
+
+
+-------------------------Casos para DoubleLinkedListQueue-----------------------------
+
+
+-Cuando solo hay un nodo, que este sea el primero
+
+-Cuando solo hay un nodo, que este sea el ultimo
+
+-Cuando hay dos nodos, ambos son terminales
+
+-Cuando hay tres o mas nodos, solo hay dos nodos terminales
+
+
