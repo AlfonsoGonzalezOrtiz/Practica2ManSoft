@@ -13,13 +13,19 @@ class DequeNodeTest {
     public void DequeNodeNull() {
         dnode = new DequeNode(null,null,null);
         assertEquals(dnode.getItem(),null);
+        assertEquals(dnode.getPrevious(),null);
         assertEquals(dnode.getNext(),null);
-        assertEquals(dnode.getNext(),null);
+        assertEquals(dnode.isNotATerminalNode(),false);
+        assertEquals(dnode.isFirstNode(),true);
+        assertEquals(dnode.isLastNode(),true);
     }
 
     @Test
     public void DequeNodeItemNotNull() {
         dnode = new DequeNode(0,null,null);
+        assertEquals(dnode.getItem(),0);
+        assertEquals(dnode.getPrevious(),null);
+        assertEquals(dnode.getNext(),null);
         assertEquals(dnode.isNotATerminalNode(),false);
         assertEquals(dnode.isFirstNode(),true);
         assertEquals(dnode.isLastNode(),true);
@@ -39,6 +45,14 @@ class DequeNodeTest {
         assertEquals(dnode.isNotATerminalNode(),false);
         assertEquals(dnode.isFirstNode(),false);
         assertEquals(dnode.isLastNode(),true);
+    }
+
+    @Test
+    public void DequeNodePreviousAndNextNotNull(){
+        dnode = new DequeNode(1,new DequeNode(0,null,null),new DequeNode(2,null,null));
+        assertEquals(dnode.isNotATerminalNode(),true);
+        assertEquals(dnode.isFirstNode(),false);
+        assertEquals(dnode.isLastNode(),false);
     }
 
 }
