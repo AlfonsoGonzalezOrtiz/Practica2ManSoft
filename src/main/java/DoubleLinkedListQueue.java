@@ -30,6 +30,7 @@ public class DoubleLinkedListQueue implements DoubleEndedQueue<T> {
 
         DequeNode<T> temp = this.list;
         this.list = this.list.next;
+        this.list.previous = null;
         temp = null;
     }
 
