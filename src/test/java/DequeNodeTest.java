@@ -4,14 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Test cases:
- * factorial 0 -> 1 *
- * factorial 1 -> 1
- * factorial 2 -> 2
- * factorial 3 -> 6
- * factorial 6 -> 720
- */
 class DequeNodeTest {
 
     private DequeNode dnode;
@@ -24,5 +16,22 @@ class DequeNodeTest {
         assertEquals(dnode.getNext(),null);
         assertEquals(dnode.getNext(),null);
     }
+
+    @Test
+    public void DequeNodeItemNotNull() {
+        dnode = new DequeNode(0,null,null);
+        assertEquals(dnode.isNotATerminalNode(),false);
+        assertEquals(dnode.isFirstNode(),true);
+        assertEquals(dnode.isLastNode(),true);
+    }
+
+    @Test
+    public void DequeNodeNextNotNull(){
+        dnode = new DequeNode(0,new DequeNode(1,null,null),null);
+        assertEquals(dnode.isNotATerminalNode(),false);
+        assertEquals(dnode.isFirstNode(),true);
+        assertEquals(dnode.isLastNode(),false);
+    }
+
 
 }
