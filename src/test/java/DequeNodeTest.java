@@ -33,5 +33,12 @@ class DequeNodeTest {
         assertEquals(dnode.isLastNode(),false);
     }
 
+    @Test
+    public void DequeNodePreviousNotNull(){
+        dnode = new DequeNode(1,null,new DequeNode(0,null,null));
+        assertEquals(dnode.isNotATerminalNode(),false);
+        assertEquals(dnode.isFirstNode(),false);
+        assertEquals(dnode.isLastNode(),true);
+    }
 
 }
