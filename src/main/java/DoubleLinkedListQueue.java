@@ -63,4 +63,14 @@ public class DoubleLinkedListQueue implements DoubleEndedQueue<T> {
         }
         return temp;
     }
+
+    public int size() {
+        int i = 0;
+        DequeNode<T> temp = this.list;
+        while(temp != null) {
+            temp = temp.next;
+            ++i;
+        }
+        return i;
+    }
 }
