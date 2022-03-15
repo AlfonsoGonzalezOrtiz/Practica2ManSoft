@@ -48,4 +48,11 @@ public class DoubleLinkedListQueue implements DoubleEndedQueue<T> {
         }
         temp = null;
     }
+
+    public DequeNode<T> peekFirst() {
+        if(this.list == null) {
+            throw new RuntimeException("List is null");
+        }
+        return this.list;
+    }
 }
