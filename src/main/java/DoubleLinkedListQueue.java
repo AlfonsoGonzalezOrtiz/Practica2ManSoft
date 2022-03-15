@@ -24,8 +24,28 @@ public class DoubleLinkedListQueue implements DoubleEndedQueue<T> {
     }
 
     public void deleteFirst() {
+        if(this.list == null) {
+            throw new RuntimeException("Can't delete from empty list");
+        }
+
         DequeNode<T> temp = this.list;
         this.list = this.list.next;
+        temp = null;
+    }
+
+    public void deleteLast() {
+        if(this.list == null) {
+            throw new RuntimeException("Can't delete from empty list");
+        }
+
+        if(this.list.next = null) {
+            this.list = null;
+        }
+
+        DequeNode<T> temp = this.list;
+        while(temp.next.next != null) {
+            temp = temp.next;
+        }
         temp = null;
     }
 }
