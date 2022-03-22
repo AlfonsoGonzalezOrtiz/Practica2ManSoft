@@ -7,18 +7,18 @@
  */
 public class DequeNode<T> {
     private T item;
-    private DequeNode next;
-    private DequeNode previous;
+    private DequeNode<T> next;
+    private DequeNode<T> previous;
 
     public void setItem(T item) {
         this.item = item;
     }
 
-    public void setNext(DequeNode next) {
+    public void setNext(DequeNode<T> next) {
         this.next = next;
     }
 
-    public void setPrevious(DequeNode previous) {
+    public void setPrevious(DequeNode<T> previous) {
         this.previous = previous;
     }
 
@@ -26,15 +26,15 @@ public class DequeNode<T> {
         return item;
     }
 
-    public DequeNode getNext() {
+    public DequeNode<T> getNext() {
         return next;
     }
 
-    public DequeNode getPrevious() {
+    public DequeNode<T> getPrevious() {
         return previous;
     }
 
-    public DequeNode(T item, DequeNode next, DequeNode previous) {
+    public DequeNode(T item, DequeNode<T> next, DequeNode<T> previous) {
         this.item = item;
         this.next = next;
         this.previous = previous;

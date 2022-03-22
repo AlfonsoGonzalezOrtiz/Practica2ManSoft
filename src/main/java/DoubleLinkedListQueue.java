@@ -1,16 +1,16 @@
-public class DoubleLinkedListQueue <T> implements DoubleEndedQueue <T> {
+public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T> {
 
-    private DequeNode list;
+    private DequeNode<T> list;
 
     public DoubleLinkedListQueue() {
         this.list = null;
     }
 
-    public void append(DequeNode node) {
+    public void append(DequeNode<T> node) {
         if(list == null) {
             list = node;
         } else {
-            DequeNode temp = this.list;
+            DequeNode<T> temp = this.list;
             while(temp.getNext() != null) {
                 temp = temp.getNext();
             }
@@ -19,36 +19,36 @@ public class DoubleLinkedListQueue <T> implements DoubleEndedQueue <T> {
         }
     }
 
-    public void appendLeft(DequeNode node) {
+    public void appendLeft(DequeNode<T> node) {
         node.setNext(this.list);
+        this.list.setPrevious(node);
         this.list = node;
     }
 
     public void deleteFirst() {
         if(this.list == null) {
-            throw new RuntimeException("Can't delete from empty list");
+            throw new RuntimeException("Cannot delete from empty list");
         }
 
-        DequeNode temp = this.list;
-        this.list = this.list.next;
-        this.list.previous = null;
-        temp = null;
+        this.list = this.list.getNext();
+        if(this.list != null) {
+            this.list.setPrevious(null);
+        }
     }
 
     public void deleteLast() {
         if(this.list == null) {
-            throw new RuntimeException("Can't delete from empty list");
+            throw new RuntimeException("Cannot delete from empty list");
         }
 
-        if(this.list.next = null) {
+        if(this.list.getNext() == null) {
             this.list = null;
         }
 
-        DequeNode temp = this.list;
+        DequeNode<T> temp = this.list;
         while(temp.getNext().getNext() != null) {
             temp = temp.getNext();
         }
-        temp = null;
     }
 
     public DequeNode<T> peekFirst() {
@@ -59,7 +59,7 @@ public class DoubleLinkedListQueue <T> implements DoubleEndedQueue <T> {
         if(list == null) {
             return null;
         }
-        DequeNode temp = this.list;
+        DequeNode<T> temp = this.list;
         while(temp.getNext() != null) {
             temp = temp.getNext();
         }
@@ -68,7 +68,7 @@ public class DoubleLinkedListQueue <T> implements DoubleEndedQueue <T> {
 
     public int size() {
         int i = 0;
-        DequeNode temp = this.list;
+        DequeNode<T> temp = this.list;
         while(temp != null) {
             temp = temp.getNext();
             ++i;
