@@ -84,7 +84,11 @@ public class DoubleLinkedListQueueTest {
 
     @Test
     public void AppendLeftOneNode(){
-        
+        DequeNode node1 = new DequeNode<>(1, null, null);
+        DequeNode node2 = new DequeNode<>(1, null, null);
+        list.appendLeft(node1);
+        list.appendLeft(node2);
+        assertEquals(node2, list.peekFirst());
     }
 
     @Test
