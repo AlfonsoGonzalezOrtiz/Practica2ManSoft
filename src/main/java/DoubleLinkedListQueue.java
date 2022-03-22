@@ -21,33 +21,32 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T> {
 
     public void appendLeft(DequeNode<T> node) {
         node.setNext(this.list);
-        this.list.setPrevious(node);
+        if(this.list != null) {
+            this.list.setPrevious(node);
+        }
         this.list = node;
     }
 
     public void deleteFirst() {
-        if(this.list == null) {
-            throw new RuntimeException("Cannot delete from empty list");
-        }
-
-        this.list = this.list.getNext();
         if(this.list != null) {
+            this.list = this.list.getNext();
             this.list.setPrevious(null);
         }
     }
 
     public void deleteLast() {
-        if(this.list == null) {
-            throw new RuntimeException("Cannot delete from empty list");
-        }
+        if(this.list != null) {
+            if(this.list.getNext() == null) {
+                this.list = null;
+            } else {
+                DequeNode<T> temp = this.list;
+                if(temp.getNext() != null) {
+                    while(temp.getNext().getNext() != null) {
+                        temp = temp.getNext();
+                    }
+                }
+            }
 
-        if(this.list.getNext() == null) {
-            this.list = null;
-        }
-
-        DequeNode<T> temp = this.list;
-        while(temp.getNext().getNext() != null) {
-            temp = temp.getNext();
         }
     }
 

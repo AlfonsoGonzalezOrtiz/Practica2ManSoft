@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Deque;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -51,12 +53,19 @@ public class DoubleLinkedListQueueTest {
 
     @Test
     public void AppendLeftNodeless(){
-
+        DequeNode node = new DequeNode<>(1, null, null);
+        list.appendLeft(node);
+        assertEquals(node, list.peekFirst());
     }
 
     @Test
     public void AppendLeftOneNode(){
-
+        DequeNode node1 = new DequeNode<>(1, null, null);
+        DequeNode node2 = new DequeNode<>(1, null, null);
+        list.appendLeft(node1);
+        list.appendLeft(node2);
+        assertEquals(node2, list.peekFirst());
+        assertEquals(node1, list.peekLast());
     }
 
 
@@ -92,12 +101,32 @@ public class DoubleLinkedListQueueTest {
 
     @Test
     public void DeleteLastNodeless(){
-
+        list.deleteLast();
+        assertNull(list);
+        assertNull(list.peekFirst());
+        assertNull(list.peekLast());
+        assertEquals(0, list.size());
     }
 
     @Test
     public void DeleteLastOneNode(){
-
+        DequeNode node = new DequeNode<>(1, null, null);
+        list.append(node);
+        list.deleteLast();
+        assertNull(list.peekFirst());
+        assertNull(list.peekLast());
+        assertEquals(0, list.size());
     }
 
+    @Test
+    public void DeleteLastMultipleNodes(){
+        DequeNode node1 = new DequeNode<>(1, null, null);
+        DequeNode node2 = new DequeNode<>(1, null, null);
+        list.append(node1);
+        list.append(node2);
+        list.deleteLast();
+        assertEquals(node1, list.peekFirst());
+        assertEquals(node1, list.peekLast());
+        assertEquals(1, list.size());
+    }
 }
