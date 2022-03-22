@@ -109,7 +109,11 @@ public class DoubleLinkedListQueueTest {
 
     @Test
     public void DeleteLastNodeless(){
-
+        list.deleteLast();
+        assertNull(list);
+        assertNull(list.peekFirst());
+        assertNull(list.peekLast());
+        assertEquals(0, list.size());
     }
 
     @Test
