@@ -93,7 +93,7 @@ public class DoubleLinkedListQueueTest {
     }
 
     @Test
-    public void DeleteFirstNodeless(){
+    public void DeleteFirstNodeless() {
 
     }
 

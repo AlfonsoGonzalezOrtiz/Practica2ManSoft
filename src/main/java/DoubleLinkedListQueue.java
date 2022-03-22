@@ -28,12 +28,8 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T> {
     }
 
     public void deleteFirst() {
-        if(this.list == null) {
-            throw new RuntimeException("Cannot delete from empty list");
-        }
-
-        this.list = this.list.getNext();
         if(this.list != null) {
+            this.list = this.list.getNext();
             this.list.setPrevious(null);
         }
     }
