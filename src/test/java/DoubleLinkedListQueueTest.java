@@ -1,8 +1,6 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Deque;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -32,8 +30,8 @@ public class DoubleLinkedListQueueTest {
 
 
     @Test
-    public void AppendNodeless(){
-        DequeNode node = new DequeNode(1,null,null);
+    public void AppendOneNode(){
+        DequeNode<Integer> node = new DequeNode<>(1,null,null);
         list.append(node);
         assertEquals(node,list.peekFirst());
         assertEquals(node,list.peekLast());
@@ -41,31 +39,59 @@ public class DoubleLinkedListQueueTest {
     }
 
     @Test
-    public void AppendOneNode(){
-        DequeNode node = new DequeNode(1,null,null);
-        DequeNode node2 = new DequeNode(2,null,null);
+    public void AppendTwoNodes(){
+        DequeNode<Integer> node = new DequeNode<>(1,null,null);
+        DequeNode<Integer> node2 = new DequeNode<>(2,null,null);
         list.append(node);
         list.append(node2);
         assertEquals(node,list.peekFirst());
-        assertEquals(node,list.peekLast());
+        assertEquals(node2,list.peekLast());
         assertEquals(2,list.size());
     }
 
     @Test
-    public void AppendLeftNodeless(){
-        DequeNode node = new DequeNode<>(1, null, null);
-        list.appendLeft(node);
-        assertEquals(node, list.peekFirst());
+    public void AppendMultipleNodes(){
+        DequeNode<Integer> node = new DequeNode<>(1,null,null);
+        DequeNode<Integer> node2 = new DequeNode<>(2,null,null);
+        DequeNode<Integer> node3 = new DequeNode<>(3,null,null);
+        list.append(node);
+        list.append(node2);
+        list.append(node3);
+        assertEquals(node,list.peekFirst());
+        assertEquals(node3,list.peekLast());
+        assertEquals(3,list.size());
     }
 
     @Test
     public void AppendLeftOneNode(){
-        DequeNode node1 = new DequeNode<>(1, null, null);
-        DequeNode node2 = new DequeNode<>(1, null, null);
+        DequeNode<Integer> node = new DequeNode<>(1, null, null);
+        list.appendLeft(node);
+        assertEquals(node, list.peekFirst());
+        assertEquals(1,list.size());
+    }
+
+    @Test
+    public void AppendLeftTwoNodes(){
+        DequeNode<Integer> node1 = new DequeNode<>(1, null, null);
+        DequeNode<Integer> node2 = new DequeNode<>(2, null, null);
         list.appendLeft(node1);
         list.appendLeft(node2);
         assertEquals(node2, list.peekFirst());
         assertEquals(node1, list.peekLast());
+        assertEquals(2,list.size());
+    }
+
+    @Test
+    public void AppendLeftMultipleNodes(){
+        DequeNode<Integer> node1 = new DequeNode<>(1, null, null);
+        DequeNode<Integer> node2 = new DequeNode<>(2, null, null);
+        DequeNode<Integer> node3 = new DequeNode<>(3, null, null);
+        list.appendLeft(node3);
+        list.appendLeft(node2);
+        list.appendLeft(node1);
+        assertEquals(node1, list.peekFirst());
+        assertEquals(node3, list.peekLast());
+        assertEquals(3,list.size());
     }
 
 
@@ -79,7 +105,7 @@ public class DoubleLinkedListQueueTest {
 
     @Test
     public void DeleteFirstOneNode(){
-        DequeNode node = new DequeNode(1,null,null);
+        DequeNode<Integer> node = new DequeNode<>(1,null,null);
         list.append(node);
         list.deleteFirst();
         assertNull(list.peekFirst());
@@ -88,9 +114,9 @@ public class DoubleLinkedListQueueTest {
     }
 
     @Test
-    public void DeleteFirstMultipleNodes(){
-        DequeNode node = new DequeNode(1,null,null);
-        DequeNode node2 = new DequeNode(2,null,null);
+    public void DeleteFirstTwoNodes(){
+        DequeNode<Integer> node = new DequeNode<>(1,null,null);
+        DequeNode<Integer> node2 = new DequeNode<>(2,null,null);
         list.append(node);
         list.append(node2);
         list.deleteFirst();
@@ -100,9 +126,22 @@ public class DoubleLinkedListQueueTest {
     }
 
     @Test
+    public void DeleteFirstMultipleNodes(){
+        DequeNode<Integer> node = new DequeNode<>(1,null,null);
+        DequeNode<Integer> node2 = new DequeNode<>(2,null,null);
+        DequeNode<Integer> node3 = new DequeNode<>(3,null,null);
+        list.append(node);
+        list.append(node2);
+        list.append(node3);
+        list.deleteFirst();
+        assertEquals(node2,list.peekFirst());
+        assertEquals(node3,list.peekLast());
+        assertEquals(2,list.size());
+    }
+
+    @Test
     public void DeleteLastNodeless(){
         list.deleteLast();
-        assertNull(list);
         assertNull(list.peekFirst());
         assertNull(list.peekLast());
         assertEquals(0, list.size());
@@ -110,7 +149,7 @@ public class DoubleLinkedListQueueTest {
 
     @Test
     public void DeleteLastOneNode(){
-        DequeNode node = new DequeNode<>(1, null, null);
+        DequeNode<Integer> node = new DequeNode<>(1, null, null);
         list.append(node);
         list.deleteLast();
         assertNull(list.peekFirst());
@@ -119,14 +158,28 @@ public class DoubleLinkedListQueueTest {
     }
 
     @Test
-    public void DeleteLastMultipleNodes(){
-        DequeNode node1 = new DequeNode<>(1, null, null);
-        DequeNode node2 = new DequeNode<>(1, null, null);
+    public void DeleteLastTwoNodes(){
+        DequeNode<Integer> node1 = new DequeNode<>(1, null, null);
+        DequeNode<Integer> node2 = new DequeNode<>(1, null, null);
         list.append(node1);
         list.append(node2);
         list.deleteLast();
         assertEquals(node1, list.peekFirst());
         assertEquals(node1, list.peekLast());
         assertEquals(1, list.size());
+    }
+
+    @Test
+    public void DeleteLastMultipleNodes(){
+        DequeNode<Integer> node1 = new DequeNode<>(1,null,null);
+        DequeNode<Integer> node2 = new DequeNode<>(2,null,null);
+        DequeNode<Integer> node3 = new DequeNode<>(3,null,null);
+        list.append(node1);
+        list.append(node2);
+        list.append(node3);
+        list.deleteLast();
+        assertEquals(node1,list.peekFirst());
+        assertEquals(node2,list.peekLast());
+        assertEquals(2,list.size());
     }
 }
