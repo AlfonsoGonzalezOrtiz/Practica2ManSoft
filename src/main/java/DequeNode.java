@@ -6,9 +6,9 @@
  * @param <T>
  */
 public class DequeNode<T> {
-    private T item ;
-    private DequeNode next ;
-    private DequeNode previous ;
+    private T item;
+    private DequeNode next;
+    private DequeNode previous;
 
     public T getItem() {
         return item;
@@ -23,20 +23,20 @@ public class DequeNode<T> {
     }
 
     public DequeNode(T item, DequeNode next, DequeNode previous) {
-        this.item = item ;
-        this.next = next ;
-        this.previous = previous ;
+        this.item = item;
+        this.next = next;
+        this.previous = previous;
     }
 
     public boolean isFirstNode() {
-        return previous == null ;
+        return previous == null;
     }
 
     public boolean isLastNode() {
-        return next == null ;
+        return next == null;
     }
 
     public boolean isNotATerminalNode() {
-        return (!isFirstNode() && !isLastNode()) ;
+        return (!isFirstNode() && !isLastNode());
     }
 }
