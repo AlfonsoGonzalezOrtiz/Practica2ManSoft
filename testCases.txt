@@ -35,6 +35,8 @@
 
 -Cuando solo hay un nodo, que este sea el ultimo
 
+-Cuando solo hay un nodo, que este sea terminal
+
 -Cuando hay dos nodos, ambos son terminales
 
 -Cuando hay tres o mas nodos, solo hay dos nodos terminales
