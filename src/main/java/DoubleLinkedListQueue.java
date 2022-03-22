@@ -1,77 +1,96 @@
 public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T> {
 
-    private DequeNode<T> list;
+    private DequeNode<T> first;
+    private DequeNode<T> last;
 
     public DoubleLinkedListQueue() {
-        this.list = null;
+        this.first = null;
+        this.last = null;
     }
 
     public void append(DequeNode<T> node) {
-        if(list == null) {
-            list = node;
-        } else {
-            DequeNode<T> temp = this.list;
-            while(temp.getNext() != null) {
-                temp = temp.getNext();
-            }
-            node.setPrevious(temp);
-            temp.setNext(node);
+        if(first == null){
+            first = node;
+            last = node;
+            first.setPrevious(null);
+            first.setNext(null);
+            last.setNext(null);
+            last.setPrevious(null);
+        }else{
+            last.setNext(node);
+            node.setPrevious(last);
+            last = node;
         }
     }
 
     public void appendLeft(DequeNode<T> node) {
-        node.setNext(this.list);
-        if(this.list != null) {
-            this.list.setPrevious(node);
+        if(first == null){
+            first = node;
+            last = node;
+            first.setPrevious(null);
+            first.setNext(null);
+            last.setNext(null);
+            last.setPrevious(null);
+        }else{
+            first.setPrevious(node);
+            node.setNext(first);
+            first = node;
         }
-        this.list = node;
     }
 
     public void deleteFirst() {
-        if(this.list != null) {
-            this.list = this.list.getNext();
-            this.list.setPrevious(null);
+        if(first != null){
+            if (first.equals(last)){
+                first = null;
+                last = null;
+            }else if(first.getNext().equals(last)){
+                first.setPrevious(null);
+                first.setNext(null);
+                last.setPrevious(null);
+                last.setNext(null);
+                first = last;
+            }else{
+                first = first.getNext();
+                first.setPrevious(null);
+            }
         }
     }
 
     public void deleteLast() {
-        if(this.list != null) {
-            if(this.list.getNext() == null) {
-                this.list = null;
-            } else {
-                DequeNode<T> temp = this.list;
-                if(temp.getNext() != null) {
-                    while(temp.getNext().getNext() != null) {
-                        temp = temp.getNext();
-                    }
-                }
+        if(first != null){
+            if(first.equals(last)){
+                first = null;
+                last = null;
             }
-
+            else if(first.getNext().equals(last)){
+                first.setPrevious(null);
+                first.setNext(null);
+                last.setPrevious(null);
+                last.setNext(null);
+                last = first;
+            }
+            else{
+                last = last.getPrevious();
+                last.setNext(null);
+            }
         }
     }
 
     public DequeNode<T> peekFirst() {
-        return this.list;
+        return first;
     }
 
     public DequeNode<T> peekLast() {
-        if(list == null) {
-            return null;
-        }
-        DequeNode<T> temp = this.list;
-        while(temp.getNext() != null) {
-            temp = temp.getNext();
-        }
-        return temp;
+        return last;
     }
 
     public int size() {
-        int i = 0;
-        DequeNode<T> temp = this.list;
-        while(temp != null) {
+        DequeNode<T> temp = first;
+        int size = 0;
+        while (temp != null){
             temp = temp.getNext();
-            ++i;
+            size++;
         }
-        return i;
+        return size;
     }
 }
