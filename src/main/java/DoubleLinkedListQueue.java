@@ -1,4 +1,4 @@
-public class DoubleLinkedListQueue implements DoubleEndedQueue {
+public class DoubleLinkedListQueue <T> implements DoubleEndedQueue <T> {
 
     private DequeNode list;
 
@@ -14,12 +14,13 @@ public class DoubleLinkedListQueue implements DoubleEndedQueue {
             while(temp.getNext() != null) {
                 temp = temp.getNext();
             }
-            temp.next = node;
+            node.setPrevious(temp);
+            temp.setNext(node);
         }
     }
 
     public void appendLeft(DequeNode node) {
-        node.next = this.list;
+        node.setNext(this.list);
         this.list = node;
     }
 
