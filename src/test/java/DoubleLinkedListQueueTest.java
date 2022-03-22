@@ -124,12 +124,18 @@ public class DoubleLinkedListQueueTest {
         assertNull(list.peekFirst());
         assertNull(list.peekLast());
         assertEquals(0, list.size());
-
     }
 
     @Test
     public void DeleteLastMultipleNodes(){
-
+        DequeNode node1 = new DequeNode<>(1, null, null);
+        DequeNode node2 = new DequeNode<>(1, null, null);
+        list.append(node1);
+        list.append(node2);
+        list.deleteLast();
+        assertEquals(node1, list.peekFirst());
+        assertEquals(node1, list.peekLast());
+        assertEquals(1, list.size());
     }
 
 
