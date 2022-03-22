@@ -38,12 +38,15 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T> {
         if(this.list != null) {
             if(this.list.getNext() == null) {
                 this.list = null;
+            } else {
+                DequeNode<T> temp = this.list;
+                if(temp.getNext() != null) {
+                    while(temp.getNext().getNext() != null) {
+                        temp = temp.getNext();
+                    }
+                }
             }
 
-            DequeNode<T> temp = this.list;
-            while(temp.getNext().getNext() != null) {
-                temp = temp.getNext();
-            }
         }
     }
 
