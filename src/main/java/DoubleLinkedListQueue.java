@@ -21,7 +21,9 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T> {
 
     public void appendLeft(DequeNode<T> node) {
         node.setNext(this.list);
-        this.list.setPrevious(node);
+        if(this.list != null) {
+            this.list.setPrevious(node);
+        }
         this.list = node;
     }
 

@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Deque;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -75,12 +77,14 @@ public class DoubleLinkedListQueueTest {
 
     @Test
     public void AppendLeftNodeless(){
-
+        DequeNode node = new DequeNode<>(1, null, null);
+        list.appendLeft(node);
+        assertEquals(node, list.peekFirst());
     }
 
     @Test
     public void AppendLeftOneNode(){
-
+        
     }
 
     @Test
