@@ -89,11 +89,7 @@ public class DoubleLinkedListQueueTest {
         list.appendLeft(node1);
         list.appendLeft(node2);
         assertEquals(node2, list.peekFirst());
-    }
-
-    @Test
-    public void AppendLeftMultipleNodes(){
-
+        assertEquals(node1, list.peekLast());
     }
 
     @Test
