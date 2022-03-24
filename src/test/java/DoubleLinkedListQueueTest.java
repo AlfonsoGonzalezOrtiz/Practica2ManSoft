@@ -182,4 +182,65 @@ public class DoubleLinkedListQueueTest {
         assertEquals(node2,list.peekLast());
         assertEquals(2,list.size());
     }
+
+    @Test
+    public void GetAtNodeless(){
+        assertNull(list.getAt(100));
+    }
+
+    @Test
+    public void GetAtWithIncorrectIndex(){
+        DequeNode<Integer> node1 = new DequeNode<>(1,null,null);
+        DequeNode<Integer> node2 = new DequeNode<>(2,null,null);
+        DequeNode<Integer> node3 = new DequeNode<>(3,null,null);
+        list.append(node1);
+        list.append(node2);
+        list.append(node3);
+        assertNull(list.getAt(-1));
+        assertNull(list.getAt(0));
+        assertNull(list.getAt(4));
+        assertNull(list.getAt(1000));
+    }
+
+    @Test
+    public void GetAtWithCorrectIndex(){
+        DequeNode<Integer> node1 = new DequeNode<>(1,null,null);
+        DequeNode<Integer> node2 = new DequeNode<>(2,null,null);
+        DequeNode<Integer> node3 = new DequeNode<>(3,null,null);
+        list.append(node1);
+        list.append(node2);
+        list.append(node3);
+        assertEquals(node1,list.getAt(1));
+        assertEquals(node2,list.getAt(2));
+        assertEquals(node3,list.getAt(3));
+    }
+
+    @Test
+    public void FindNodeless(){
+        DequeNode<Integer> node1 = new DequeNode<>(1,null,null);
+        assertNull(list.find(node1));
+    }
+
+    @Test
+    public void FindIncorrectNode(){
+        DequeNode<Integer> node1 = new DequeNode<>(1,null,null);
+        DequeNode<Integer> node2 = new DequeNode<>(2,null,null);
+        list.append(node1);
+        assertNull(list.find(2));
+    }
+
+    @Test
+    public void FindCorrectNode(){
+        DequeNode<Integer> node1 = new DequeNode<>(1,null,null);
+        DequeNode<Integer> node2 = new DequeNode<>(2,null,null);
+        DequeNode<Integer> node3 = new DequeNode<>(3,null,null);
+        list.append(node1);
+        list.append(node2);
+        list.append(node3);
+        assertEquals(node1,list.find(1));
+        assertEquals(node2,list.find(2));
+        assertEquals(node3,list.find(3));
+    }
+
+
 }
