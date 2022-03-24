@@ -1,3 +1,5 @@
+import java.util.Comparator;
+
 public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T> {
 
     private DequeNode<T> first;
@@ -113,6 +115,21 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T> {
     }
 
     /**
+     * Returns the size of the list. Returns 0 if the list is empty.
+     *
+     * @return size
+     */
+    public int size() {
+        DequeNode<T> temp = first;
+        int size = 0;
+        while (temp != null){
+            temp = temp.getNext();
+            size++;
+        }
+        return size;
+    }
+
+    /**
      * Returns the node at position i, starting with 1, ending with size().
      * If i is out of bounds for the list, null is returned.
      *
@@ -178,18 +195,27 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T> {
         }
     }
 
-    /**
-     * Returns the size of the list. Returns 0 if the list is empty.
-     *
-     * @return size
-     */
-    public int size() {
-        DequeNode<T> temp = first;
-        int size = 0;
-        while (temp != null){
-            temp = temp.getNext();
-            size++;
+    @Override
+    public void sort(Comparator<DequeNode<T>> comparator) {
+        int size = size();
+        DequeNode<T> prev = first;
+        DequeNode<T> next;
+        if(prev != null){
+            next = first.getNext();
         }
-        return size;
+        for(int i = 0; i < size;i++){
+            next = prev.getNext();
+            for(int j = i + 1; j < size;j++){
+                if(comparator.compare(prev,next) > 0){
+                    DequeNode<T> temp = prev;
+                    prev = next;
+                    next = temp;
+                }
+                next = next.getNext();
+            }
+            prev = prev.getNext();
+        }
     }
+
+
 }
