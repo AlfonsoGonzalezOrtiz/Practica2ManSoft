@@ -132,6 +132,28 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T> {
     }
 
     /**
+     * Returns node with item equals to the parameter item.
+     * Returns null if the list is empty or if the item is not found.
+     *
+     * @param item
+     */
+    public DequeNode<T> find(T item) {
+        int i = 1;
+        DequeNode<T> result = null;
+        if(this.first != null) {
+            result = first;
+            while(i < this.size() && result.getItem() != item) {
+                result = result.getNext();
+                ++i;
+            }
+            if(result.getItem() != item) {
+                result = null;
+            }
+        }
+        return result;
+    }
+
+    /**
      * Returns the size of the list. Returns 0 if the list is empty.
      *
      * @return size
