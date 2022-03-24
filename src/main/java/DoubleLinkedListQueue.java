@@ -11,7 +11,7 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T> {
     /**
      * Adds the node parameter at the end of the list.
      *
-     * @param node
+     * @param node node to add to the list
      */
     public void append(DequeNode<T> node) {
         if(first == null){
@@ -31,7 +31,7 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T> {
     /**
      * Adds the node parameter at the beginning of the list.
      *
-     * @param node
+     * @param node node to add to the list
      */
     public void appendLeft(DequeNode<T> node) {
         if(first == null){
@@ -116,7 +116,7 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T> {
      * Returns the node at position i, starting with 1, ending with size().
      * If i is out of bounds for the list, null is returned.
      *
-     * @param i
+     * @param i position
      */
     public DequeNode<T> getAt(int i) {
         DequeNode<T> result = null;
@@ -135,22 +135,47 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T> {
      * Returns node with item equals to the parameter item.
      * Returns null if the list is empty or if the item is not found.
      *
-     * @param item
+     * @param item item to find in list
      */
     public DequeNode<T> find(T item) {
         int i = 1;
         DequeNode<T> result = null;
         if(this.first != null) {
             result = first;
-            while(i < this.size() && result.getItem() != item) {
+            while(i < this.size() && !result.getItem().equals(item)) {
                 result = result.getNext();
                 ++i;
             }
-            if(result.getItem() != item) {
+            if(!result.getItem().equals(item)) {
                 result = null;
             }
         }
         return result;
+    }
+
+    /**
+     * Deletes the node equal to the parameter.
+     * Does nothing if the list is empty.
+     *
+     * @param node node to delete
+     */
+    public void delete(DequeNode<T> node) {
+        if(this.first != null) {
+            int i = 1;
+            DequeNode<T> temp = this.first;
+            while(i < this.size() && !temp.equals(node)) {
+                temp = temp.getNext();
+                ++i;
+            }
+            if(temp.equals(node)) {
+                if(temp.getNext() != null) {
+                    temp.getNext().setPrevious(temp.getPrevious());
+                }
+                if(temp.getPrevious() != null) {
+                    temp.getPrevious().setNext(temp.getNext());
+                }
+            }
+        }
     }
 
     /**
