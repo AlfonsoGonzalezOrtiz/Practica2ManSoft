@@ -65,6 +65,19 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T> {
         return temp;
     }
 
+    public DequeNode<T> getAt(int i) {
+        DequeNode<T> result = null;
+        if(i > 0 && i <= this.size()) {
+            int cnt = 1;
+            result = this.list;
+            while(cnt < i) {
+                result = result.getNext();
+                ++cnt;
+            }
+        }
+        return result;
+    }
+
     public int size() {
         int i = 0;
         DequeNode<T> temp = this.list;
