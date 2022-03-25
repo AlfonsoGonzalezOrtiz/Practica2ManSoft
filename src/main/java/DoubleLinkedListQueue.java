@@ -1,3 +1,5 @@
+import java.util.Comparator;
+
 public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T> {
 
     private DequeNode<T> first;
@@ -24,6 +26,7 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T> {
         }else{
             last.setNext(node);
             node.setPrevious(last);
+            node.setNext(null);
             last = node;
         }
     }
@@ -113,6 +116,21 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T> {
     }
 
     /**
+     * Returns the size of the list. Returns 0 if the list is empty.
+     *
+     * @return size
+     */
+    public int size() {
+        DequeNode<T> temp = first;
+        int size = 0;
+        while (temp != null){
+            temp = temp.getNext();
+            size++;
+        }
+        return size;
+    }
+
+    /**
      * Returns the node at position i, starting with 1, ending with size().
      * If i is out of bounds for the list, null is returned.
      *
@@ -161,35 +179,44 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T> {
      */
     public void delete(DequeNode<T> node) {
         if(this.first != null) {
-            int i = 1;
+            int i = 0;
             DequeNode<T> temp = this.first;
             while(i < this.size() && !temp.equals(node)) {
                 temp = temp.getNext();
-                ++i;
+                i++;
             }
             if(temp.equals(node)) {
-                if(temp.getNext() != null) {
-                    temp.getNext().setPrevious(temp.getPrevious());
-                }
-                if(temp.getPrevious() != null) {
+                if(first.equals(temp)){
+                    first = first.getNext();
+                    if(first != null){
+                        first.setPrevious(null);
+                    }
+                }else if(last.equals(temp)){
+                    last = temp.getPrevious();
+                    if(last != null){
+                        last.setNext(null);
+                    }
+                }else{
                     temp.getPrevious().setNext(temp.getNext());
+                    temp.getNext().setPrevious(temp.getPrevious());
                 }
             }
         }
     }
 
-    /**
-     * Returns the size of the list. Returns 0 if the list is empty.
-     *
-     * @return size
-     */
-    public int size() {
-        DequeNode<T> temp = first;
-        int size = 0;
-        while (temp != null){
-            temp = temp.getNext();
-            size++;
+    @Override
+    public void sort(Comparator<DequeNode<T>> comparator) {
+        int size = size();
+        for(int i = 1; i <= size;i++){
+            for(int j = i+1; j <= size;j++){
+                DequeNode<T> prev = getAt(i);
+                DequeNode<T> next = getAt(j);
+                if(comparator.compare(prev,next) > 0){
+                    T temp = prev.getItem();
+                    prev.setItem(next.getItem());
+                    next.setItem(temp);
+                }
+            }
         }
-        return size;
     }
 }
