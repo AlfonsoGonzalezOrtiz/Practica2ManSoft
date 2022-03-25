@@ -26,6 +26,7 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T> {
         }else{
             last.setNext(node);
             node.setPrevious(last);
+            node.setNext(null);
             last = node;
         }
     }
@@ -178,18 +179,26 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T> {
      */
     public void delete(DequeNode<T> node) {
         if(this.first != null) {
-            int i = 1;
+            int i = 0;
             DequeNode<T> temp = this.first;
             while(i < this.size() && !temp.equals(node)) {
                 temp = temp.getNext();
-                ++i;
+                i++;
             }
             if(temp.equals(node)) {
-                if(temp.getNext() != null) {
-                    temp.getNext().setPrevious(temp.getPrevious());
-                }
-                if(temp.getPrevious() != null) {
+                if(first.equals(temp)){
+                    first = first.getNext();
+                    if(first != null){
+                        first.setPrevious(null);
+                    }
+                }else if(last.equals(temp)){
+                    last = temp.getPrevious();
+                    if(last != null){
+                        last.setNext(null);
+                    }
+                }else{
                     temp.getPrevious().setNext(temp.getNext());
+                    temp.getNext().setPrevious(temp.getPrevious());
                 }
             }
         }
@@ -198,24 +207,16 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T> {
     @Override
     public void sort(Comparator<DequeNode<T>> comparator) {
         int size = size();
-        DequeNode<T> prev = first;
-        DequeNode<T> next;
-        if(prev != null){
-            next = first.getNext();
-        }
-        for(int i = 0; i < size;i++){
-            next = prev.getNext();
-            for(int j = i + 1; j < size;j++){
+        for(int i = 1; i <= size;i++){
+            for(int j = i+1; j <= size;j++){
+                DequeNode<T> prev = getAt(i);
+                DequeNode<T> next = getAt(j);
                 if(comparator.compare(prev,next) > 0){
-                    DequeNode<T> temp = prev;
-                    prev = next;
-                    next = temp;
+                    T temp = prev.getItem();
+                    prev.setItem(next.getItem());
+                    next.setItem(temp);
                 }
-                next = next.getNext();
             }
-            prev = prev.getNext();
         }
     }
-
-
 }
