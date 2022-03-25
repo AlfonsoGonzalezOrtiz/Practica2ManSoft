@@ -78,6 +78,18 @@ public class DoubleLinkedListQueueTest {
     }
 
     @Test
+    public void AppendSameNodes(){
+        DequeNode<Integer> node = new DequeNode<>(1,null,null);
+        DequeNode<Integer> node2 = new DequeNode<>(2,null,null);
+        list.append(node);
+        list.append(node2);
+        list.append(node);
+        assertNull(node.getPrevious());
+        assertEquals(node.getNext(),node2);
+        assertNull(node2.getNext());
+    }
+
+    @Test
     public void AppendLeftOneNode(){
         DequeNode<Integer> node = new DequeNode<>(1, null, null);
         list.appendLeft(node);
@@ -324,7 +336,7 @@ public class DoubleLinkedListQueueTest {
 
 
     @Test
-    public void Sort(){
+    public void SortWithDifferentItems(){
         DequeNode<Integer> node1 = new DequeNode<>(1,null,null);
         DequeNode<Integer> node2 = new DequeNode<>(2,null,null);
         DequeNode<Integer> node3 = new DequeNode<>(3,null,null);
@@ -337,12 +349,7 @@ public class DoubleLinkedListQueueTest {
         list.append(node6);
         list.append(node5);
         list.append(node3);
-        list.sort(new Comparator<DequeNode>() {
-            @Override
-            public int compare(DequeNode o1, DequeNode o2) {
-                return (Integer) o1.getItem() - (Integer) o2.getItem();
-            }
-        });
+        list.sort(Comparator.comparingInt((DequeNode o) -> (Integer) o.getItem()));
         assertEquals("1",list.getAt(1).getItem().toString());
         assertEquals("2",list.getAt(2).getItem().toString());
         assertEquals("3",list.getAt(3).getItem().toString());
@@ -363,5 +370,28 @@ public class DoubleLinkedListQueueTest {
         assertEquals(list.getAt(4).getPrevious(),list.getAt(3));
         assertEquals(list.getAt(5).getPrevious(),list.getAt(4));
         assertEquals(list.getAt(6).getPrevious(),list.getAt(5));
+    }
+
+    @Test
+    public void SortWithSameItems(){
+        DequeNode<Integer> node1 = new DequeNode<>(1,null,null);
+        DequeNode<Integer> node2 = new DequeNode<>(2,null,null);
+        DequeNode<Integer> node3 = new DequeNode<>(3,null,null);
+        DequeNode<Integer> node4 = new DequeNode<>(1,null,null);
+        DequeNode<Integer> node5 = new DequeNode<>(2,null,null);
+        DequeNode<Integer> node6 = new DequeNode<>(3,null,null);
+        list.append(node2);
+        list.append(node4);
+        list.append(node1);
+        list.append(node6);
+        list.append(node5);
+        list.append(node3);
+        list.sort(Comparator.comparingInt((DequeNode o) -> (Integer) o.getItem()));
+        assertEquals("1",list.getAt(1).getItem().toString());
+        assertEquals("1",list.getAt(2).getItem().toString());
+        assertEquals("2",list.getAt(3).getItem().toString());
+        assertEquals("2",list.getAt(4).getItem().toString());
+        assertEquals("3",list.getAt(5).getItem().toString());
+        assertEquals("3",list.getAt(6).getItem().toString());
     }
 }

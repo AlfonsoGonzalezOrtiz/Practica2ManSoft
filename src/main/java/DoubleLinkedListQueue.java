@@ -16,18 +16,20 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T> {
      * @param node node to add to the list
      */
     public void append(DequeNode<T> node) {
-        if(first == null){
-            first = node;
-            last = node;
-            first.setPrevious(null);
-            first.setNext(null);
-            last.setNext(null);
-            last.setPrevious(null);
-        }else{
-            last.setNext(node);
-            node.setPrevious(last);
-            node.setNext(null);
-            last = node;
+        if(!node.equals(find(node.getItem()))){
+            if(first == null){
+                first = node;
+                last = node;
+                first.setPrevious(null);
+                first.setNext(null);
+                last.setNext(null);
+                last.setPrevious(null);
+            }else{
+                last.setNext(node);
+                node.setPrevious(last);
+                node.setNext(null);
+                last = node;
+            }
         }
     }
 
