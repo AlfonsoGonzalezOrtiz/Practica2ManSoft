@@ -31,14 +31,36 @@
 -------------------------Casos para DoubleLinkedListQueue-----------------------------
 
 
--Cuando solo hay un nodo, que este sea el primero
+-PeekFirst con una lista vacia
 
--Cuando solo hay un nodo, que este sea el ultimo
+-PeekLast con una lista vacia
 
--Cuando solo hay un nodo, que este sea terminal
+-Size con una lista vacia
 
--Cuando hay dos nodos, ambos son terminales
+-Append con un nodo cuando la lista esta vacia
 
--Cuando hay tres o mas nodos, solo hay dos nodos terminales
+-Append con un nodo cuando la lista tiene un nodo
 
+-Append con un nodo cuando la lista tiene varios nodos
 
+-AppendLeft con un nodo cuando la lista esta vacia
+
+-AppendLeft con un nodo cuando la lista tiene un nodo
+
+-AppendLeft con un nodo cuando la lista tiene varios nodos
+
+-DeleteFirst con una lista vacia
+
+-DeleteFirst con una lista con un nodo
+
+-DeleteFirst con una lista con dos nodos
+
+-DeleteFirst con una lista con varios nodos
+
+-DeleteLast con una lista vacia
+
+-DeleteLast con una lista con un nodo
+
+-DeleteLast con una lista con dos nodos
+
+-DeleteLast con una lista con varios nodos
