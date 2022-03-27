@@ -43,6 +43,8 @@
 
 -Append con un nodo cuando la lista tiene varios nodos
 
+-Append repitiendo algunos nodos
+
 -AppendLeft con un nodo cuando la lista esta vacia
 
 -AppendLeft con un nodo cuando la lista tiene un nodo
@@ -64,3 +66,29 @@
 -DeleteLast con una lista con dos nodos
 
 -DeleteLast con una lista con varios nodos
+
+-GetAt con una lista vacia
+
+-GetAt con un indice erroneo
+
+-GetAt con un indice apropiado
+
+-Find con una lista vacia
+
+-Find con un nodo erroneo
+
+-Find con un nodo apropiado
+
+-Delete con una lista vacia
+
+-Delete con una lista con un nodo
+
+-Delete con una lista con varios nodos eliminando el primero
+
+-Delete con una lista con varios nodos eliminando un nodo no terminal
+
+-Delete con una lista con varios nodos eliminando el ultimo
+
+-Sort con varios nodos distintos (en cuanto a comparacion de la clase T)
+
+-Sort con varios nodos, algunos iguales (en cuanto a comparacion de la clase T)
