@@ -1,3 +1,5 @@
+package org.example;
+
 import java.util.Comparator;
 
 public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T> {
@@ -180,30 +182,24 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T> {
      * @param node node to delete
      */
     public void delete(DequeNode<T> node) {
-        if(this.first != null) {
-            int i = 0;
-            DequeNode<T> temp = this.first;
-            while(i < this.size() && !temp.equals(node)) {
-                temp = temp.getNext();
-                i++;
-            }
-            if(temp.equals(node)) {
-                if(first.equals(temp)){
-                    first = first.getNext();
-                    if(first != null){
-                        first.setPrevious(null);
-                    }
-                }else if(last.equals(temp)){
-                    last = temp.getPrevious();
-                    if(last != null){
-                        last.setNext(null);
-                    }
-                }else{
-                    temp.getPrevious().setNext(temp.getNext());
-                    temp.getNext().setPrevious(temp.getPrevious());
+        if(first != null){
+            DequeNode<T> found = find(node.getItem());
+            if(first.equals(found)){
+                first = first.getNext();
+                if(first != null){
+                    first.setPrevious(null);
                 }
+            }else if(last.equals(found)){
+                last = found.getPrevious();
+                if(last != null){
+                    last.setNext(null);
+                }
+            }else{
+                found.getPrevious().setNext(found.getNext());
+                found.getNext().setPrevious(found.getPrevious());
             }
         }
+
     }
 
     @Override

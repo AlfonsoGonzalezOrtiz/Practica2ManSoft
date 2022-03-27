@@ -1,3 +1,4 @@
+import org.example.DequeNode;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,7 +9,7 @@ class DequeNodeTest {
 
 
     @Test
-    public void DequeNodeNull() {
+    void DequeNodeNull() {
         dnode = new DequeNode<>(null,null,null);
         assertNull(dnode.getItem());
         assertNull(dnode.getPrevious());
@@ -19,9 +20,9 @@ class DequeNodeTest {
     }
 
     @Test
-    public void DequeNodeItemNotNull() {
+    void DequeNodeItemNotNull() {
         dnode = new DequeNode<>(0,null,null);
-        assertEquals(dnode.getItem(),0);
+        assertEquals(0,dnode.getItem());
         assertNull(dnode.getPrevious());
         assertNull(dnode.getNext());
         assertFalse(dnode.isNotATerminalNode());
@@ -30,10 +31,10 @@ class DequeNodeTest {
     }
 
     @Test
-    public void DequeNodeNextNotNull(){
+    void DequeNodeNextNotNull(){
         DequeNode<Integer> next = new DequeNode<>(1,null,null);
         dnode = new DequeNode<>(0,next,null);
-        assertEquals(dnode.getItem(),0);
+        assertEquals(0,dnode.getItem());
         assertNull(dnode.getPrevious());
         assertEquals(dnode.getNext(),next);
         assertFalse(dnode.isNotATerminalNode());
@@ -42,10 +43,10 @@ class DequeNodeTest {
     }
 
     @Test
-    public void DequeNodePreviousNotNull(){
+    void DequeNodePreviousNotNull(){
         DequeNode<Integer> previous = new DequeNode<>(0,null,null);
         dnode = new DequeNode<>(1,null,previous);
-        assertEquals(dnode.getItem(),1);
+        assertEquals(1,dnode.getItem());
         assertEquals(dnode.getPrevious(),previous);
         assertNull(dnode.getNext());
         assertFalse(dnode.isNotATerminalNode());
@@ -54,11 +55,11 @@ class DequeNodeTest {
     }
 
     @Test
-    public void DequeNodePreviousAndNextNotNull(){
+    void DequeNodePreviousAndNextNotNull(){
         DequeNode<Integer> next = new DequeNode<>(2,null,null);
         DequeNode<Integer> previous = new DequeNode<>(0,null,null);
         dnode = new DequeNode<>(1,next,previous);
-        assertEquals(dnode.getItem(),1);
+        assertEquals(1,dnode.getItem());
         assertEquals(dnode.getPrevious(),previous);
         assertEquals(dnode.getNext(),next);
         assertTrue(dnode.isNotATerminalNode());
