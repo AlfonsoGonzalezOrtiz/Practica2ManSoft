@@ -1,3 +1,5 @@
+import org.example.DequeNode;
+import org.example.DoubleLinkedListQueue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -6,33 +8,33 @@ import java.util.Comparator;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class DoubleLinkedListQueueTest {
+class DoubleLinkedListQueueTest {
 
     private DoubleLinkedListQueue list;
 
     @BeforeEach
-    public void init(){
+    void init(){
         list = new DoubleLinkedListQueue<>();
     }
 
     @Test
-    public void PeekFirstNodeless() {
+    void PeekFirstNodeless() {
         assertNull(list.peekFirst());
     }
 
     @Test
-    public void PeekLastNodeless(){
+    void PeekLastNodeless(){
         assertNull(list.peekLast());
     }
 
     @Test
-    public void SizeNodeless(){
+    void SizeNodeless(){
         assertEquals(0,list.size());
     }
 
 
     @Test
-    public void AppendOneNode(){
+    void AppendOneNode(){
         DequeNode<Integer> node = new DequeNode<>(1,null,null);
         list.append(node);
         assertEquals(node,list.peekFirst());
@@ -43,7 +45,7 @@ public class DoubleLinkedListQueueTest {
     }
 
     @Test
-    public void AppendTwoNodes(){
+    void AppendTwoNodes(){
         DequeNode<Integer> node = new DequeNode<>(1,null,null);
         DequeNode<Integer> node2 = new DequeNode<>(2,null,null);
         list.append(node);
@@ -58,7 +60,7 @@ public class DoubleLinkedListQueueTest {
     }
 
     @Test
-    public void AppendMultipleNodes(){
+    void AppendMultipleNodes(){
         DequeNode<Integer> node = new DequeNode<>(1,null,null);
         DequeNode<Integer> node2 = new DequeNode<>(2,null,null);
         DequeNode<Integer> node3 = new DequeNode<>(3,null,null);
@@ -78,7 +80,7 @@ public class DoubleLinkedListQueueTest {
     }
 
     @Test
-    public void AppendSameNodes(){
+    void AppendSameNodes(){
         DequeNode<Integer> node = new DequeNode<>(1,null,null);
         DequeNode<Integer> node2 = new DequeNode<>(2,null,null);
         list.append(node);
@@ -90,7 +92,7 @@ public class DoubleLinkedListQueueTest {
     }
 
     @Test
-    public void AppendLeftOneNode(){
+    void AppendLeftOneNode(){
         DequeNode<Integer> node = new DequeNode<>(1, null, null);
         list.appendLeft(node);
         assertEquals(node, list.peekFirst());
@@ -98,7 +100,7 @@ public class DoubleLinkedListQueueTest {
     }
 
     @Test
-    public void AppendLeftTwoNodes(){
+    void AppendLeftTwoNodes(){
         DequeNode<Integer> node1 = new DequeNode<>(1, null, null);
         DequeNode<Integer> node2 = new DequeNode<>(2, null, null);
         list.appendLeft(node1);
@@ -109,7 +111,7 @@ public class DoubleLinkedListQueueTest {
     }
 
     @Test
-    public void AppendLeftMultipleNodes(){
+    void AppendLeftMultipleNodes(){
         DequeNode<Integer> node1 = new DequeNode<>(1, null, null);
         DequeNode<Integer> node2 = new DequeNode<>(2, null, null);
         DequeNode<Integer> node3 = new DequeNode<>(3, null, null);
@@ -123,7 +125,7 @@ public class DoubleLinkedListQueueTest {
 
 
     @Test
-    public void DeleteFirstNodeless(){
+    void DeleteFirstNodeless(){
         list.deleteFirst();
         assertNull(list.peekFirst());
         assertNull(list.peekLast());
@@ -131,7 +133,7 @@ public class DoubleLinkedListQueueTest {
     }
 
     @Test
-    public void DeleteFirstOneNode(){
+    void DeleteFirstOneNode(){
         DequeNode<Integer> node = new DequeNode<>(1,null,null);
         list.append(node);
         list.deleteFirst();
@@ -141,7 +143,7 @@ public class DoubleLinkedListQueueTest {
     }
 
     @Test
-    public void DeleteFirstTwoNodes(){
+    void DeleteFirstTwoNodes(){
         DequeNode<Integer> node = new DequeNode<>(1,null,null);
         DequeNode<Integer> node2 = new DequeNode<>(2,null,null);
         list.append(node);
@@ -153,7 +155,7 @@ public class DoubleLinkedListQueueTest {
     }
 
     @Test
-    public void DeleteFirstMultipleNodes(){
+    void DeleteFirstMultipleNodes(){
         DequeNode<Integer> node = new DequeNode<>(1,null,null);
         DequeNode<Integer> node2 = new DequeNode<>(2,null,null);
         DequeNode<Integer> node3 = new DequeNode<>(3,null,null);
@@ -167,7 +169,7 @@ public class DoubleLinkedListQueueTest {
     }
 
     @Test
-    public void DeleteLastNodeless(){
+    void DeleteLastNodeless(){
         list.deleteLast();
         assertNull(list.peekFirst());
         assertNull(list.peekLast());
@@ -175,7 +177,7 @@ public class DoubleLinkedListQueueTest {
     }
 
     @Test
-    public void DeleteLastOneNode(){
+    void DeleteLastOneNode(){
         DequeNode<Integer> node = new DequeNode<>(1, null, null);
         list.append(node);
         list.deleteLast();
@@ -185,7 +187,7 @@ public class DoubleLinkedListQueueTest {
     }
 
     @Test
-    public void DeleteLastTwoNodes(){
+    void DeleteLastTwoNodes(){
         DequeNode<Integer> node1 = new DequeNode<>(1, null, null);
         DequeNode<Integer> node2 = new DequeNode<>(1, null, null);
         list.append(node1);
@@ -197,7 +199,7 @@ public class DoubleLinkedListQueueTest {
     }
 
     @Test
-    public void DeleteLastMultipleNodes(){
+    void DeleteLastMultipleNodes(){
         DequeNode<Integer> node1 = new DequeNode<>(1,null,null);
         DequeNode<Integer> node2 = new DequeNode<>(2,null,null);
         DequeNode<Integer> node3 = new DequeNode<>(3,null,null);
@@ -211,12 +213,12 @@ public class DoubleLinkedListQueueTest {
     }
 
     @Test
-    public void GetAtNodeless(){
+    void GetAtNodeless(){
         assertNull(list.getAt(100));
     }
 
     @Test
-    public void GetAtWithIncorrectIndex(){
+    void GetAtWithIncorrectIndex(){
         DequeNode<Integer> node1 = new DequeNode<>(1,null,null);
         DequeNode<Integer> node2 = new DequeNode<>(2,null,null);
         DequeNode<Integer> node3 = new DequeNode<>(3,null,null);
@@ -230,7 +232,7 @@ public class DoubleLinkedListQueueTest {
     }
 
     @Test
-    public void GetAtWithCorrectIndex(){
+    void GetAtWithCorrectIndex(){
         DequeNode<Integer> node1 = new DequeNode<>(1,null,null);
         DequeNode<Integer> node2 = new DequeNode<>(2,null,null);
         DequeNode<Integer> node3 = new DequeNode<>(3,null,null);
@@ -243,20 +245,20 @@ public class DoubleLinkedListQueueTest {
     }
 
     @Test
-    public void FindNodeless(){
+    void FindNodeless(){
         DequeNode<Integer> node1 = new DequeNode<>(1,null,null);
         assertNull(list.find(node1));
     }
 
     @Test
-    public void FindIncorrectNode(){
+    void FindIncorrectNode(){
         DequeNode<Integer> node1 = new DequeNode<>(1,null,null);
         list.append(node1);
         assertNull(list.find(2));
     }
 
     @Test
-    public void FindCorrectNode(){
+    void FindCorrectNode(){
         DequeNode<Integer> node1 = new DequeNode<>(1,null,null);
         DequeNode<Integer> node2 = new DequeNode<>(2,null,null);
         DequeNode<Integer> node3 = new DequeNode<>(3,null,null);
@@ -269,14 +271,14 @@ public class DoubleLinkedListQueueTest {
     }
 
     @Test
-    public void DeleteNodeless(){
+    void DeleteNodeless(){
         DequeNode<Integer> node1 = new DequeNode<>(1,null,null);
         list.delete(node1);
         assertEquals(0,list.size());
     }
 
     @Test
-    public void DeleteUniqueNode(){
+    void DeleteUniqueNode(){
         DequeNode<Integer> node1 = new DequeNode<>(1,null,null);
         list.append(node1);
         list.delete(node1);
@@ -284,7 +286,7 @@ public class DoubleLinkedListQueueTest {
     }
 
     @Test
-    public void DeleteFirstNode(){
+    void DeleteFirstNode(){
         DequeNode<Integer> node1 = new DequeNode<>(1,null,null);
         DequeNode<Integer> node2 = new DequeNode<>(2,null,null);
         DequeNode<Integer> node3 = new DequeNode<>(3,null,null);
@@ -301,7 +303,7 @@ public class DoubleLinkedListQueueTest {
     }
 
     @Test
-    public void DeleteMidNode(){
+    void DeleteMidNode(){
         DequeNode<Integer> node1 = new DequeNode<>(1,null,null);
         DequeNode<Integer> node2 = new DequeNode<>(2,null,null);
         DequeNode<Integer> node3 = new DequeNode<>(3,null,null);
@@ -318,7 +320,7 @@ public class DoubleLinkedListQueueTest {
     }
 
     @Test
-    public void DeleteLastNode(){
+    void DeleteLastNode(){
         DequeNode<Integer> node1 = new DequeNode<>(1,null,null);
         DequeNode<Integer> node2 = new DequeNode<>(2,null,null);
         DequeNode<Integer> node3 = new DequeNode<>(3,null,null);
@@ -336,7 +338,7 @@ public class DoubleLinkedListQueueTest {
 
 
     @Test
-    public void SortWithDifferentItems(){
+    void SortWithDifferentItems(){
         DequeNode<Integer> node1 = new DequeNode<>(1,null,null);
         DequeNode<Integer> node2 = new DequeNode<>(2,null,null);
         DequeNode<Integer> node3 = new DequeNode<>(3,null,null);
@@ -373,7 +375,7 @@ public class DoubleLinkedListQueueTest {
     }
 
     @Test
-    public void SortWithSameItems(){
+    void SortWithSameItems(){
         DequeNode<Integer> node1 = new DequeNode<>(1,null,null);
         DequeNode<Integer> node2 = new DequeNode<>(2,null,null);
         DequeNode<Integer> node3 = new DequeNode<>(3,null,null);
